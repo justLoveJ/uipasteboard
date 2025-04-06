@@ -1,10 +1,12 @@
 import Flutter
 import UIKit
 
-public class UipasteboardPlugin: NSObject, FlutterPlugin {
+private let channel = "ui_pasteboard"
+
+public class UiPasteboardPlugin: NSObject, FlutterPlugin {
   public static func register(with registrar: FlutterPluginRegistrar) {
-    let channel = FlutterMethodChannel(name: "uipasteboard", binaryMessenger: registrar.messenger())
-    let instance = UipasteboardPlugin()
+    let channel = FlutterMethodChannel(name: channel, binaryMessenger: registrar.messenger())
+    let instance = UiPasteboardPlugin()
     registrar.addMethodCallDelegate(instance, channel: channel)
   }
 
@@ -16,4 +18,6 @@ public class UipasteboardPlugin: NSObject, FlutterPlugin {
       result(FlutterMethodNotImplemented)
     }
   }
+
+  
 }
