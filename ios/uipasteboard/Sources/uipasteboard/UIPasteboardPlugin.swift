@@ -3,10 +3,10 @@ import UIKit
 
 private let channel = "uipasteboard"
 
-public class UiPasteboardPlugin: NSObject, FlutterPlugin {
+public class UIPasteboardPlugin: NSObject, FlutterPlugin {
   public static func register(with registrar: FlutterPluginRegistrar) {
     let channel = FlutterMethodChannel(name: channel, binaryMessenger: registrar.messenger())
-    let instance = UiPasteboardPlugin()
+    let instance = UIPasteboardPlugin()
     registrar.addMethodCallDelegate(instance, channel: channel)
   }
 
