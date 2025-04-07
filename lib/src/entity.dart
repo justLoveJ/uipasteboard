@@ -1,5 +1,13 @@
+import 'package:flutter/services.dart';
+
+final _channel = const MethodChannel('uipasteboard');
+
 abstract class UIPasteboard {
-  static UIPasteboard get general => _UIPasteboardImpl();
+  const UIPasteboard();
+
+  static UIPasteboard get general => _UIPasteboardImpl(name: "general");
+
+  String get name;
 
   Future<int> getChangeCount();
 
@@ -14,32 +22,32 @@ abstract class UIPasteboard {
 
 class _UIPasteboardImpl implements UIPasteboard {
   @override
-  Future<int> getChangeCount() {
-    // TODO: implement getChangeCount
-    throw UnimplementedError();
+  final String name;
+
+  const _UIPasteboardImpl({required this.name});
+
+  @override
+  Future<int> getChangeCount() async {
+    return await _channel.invokeMethod<int>("getChangeCount", {"name": name}) ?? 0;
   }
 
   @override
-  Future<bool> hasColors() {
-    // TODO: implement hasColors
-    throw UnimplementedError();
+  Future<bool> hasColors() async {
+    return await _channel.invokeMethod<bool>("hasColors", {"name": name}) ?? false;
   }
 
   @override
-  Future<bool> hasImages() {
-    // TODO: implement hasImages
-    throw UnimplementedError();
+  Future<bool> hasImages() async {
+    return await _channel.invokeMethod<bool>("hasImages", {"name": name}) ?? false;
   }
 
   @override
-  Future<bool> hasStrings() {
-    // TODO: implement hasStrings
-    throw UnimplementedError();
+  Future<bool> hasStrings() async {
+    return await _channel.invokeMethod<bool>("hasStrings", {"name": name}) ?? false;
   }
 
   @override
-  Future<bool> hasURLs() {
-    // TODO: implement hasURLs
-    throw UnimplementedError();
+  Future<bool> hasURLs() async {
+    return await _channel.invokeMethod<bool>("hasURLs", {"name": name}) ?? false;
   }
 }
