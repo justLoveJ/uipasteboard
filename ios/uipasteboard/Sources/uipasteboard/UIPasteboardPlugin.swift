@@ -54,6 +54,12 @@ public class UIPasteboardPlugin: NSObject, FlutterPlugin {
     case "getColors":
       getColors(call, result)
       return
+    case "getItems":
+      getItems(call, result)
+      return
+    case "getTypes":
+      getTypes(call, result)
+      return
     default:
       result(FlutterMethodNotImplemented)
     }
@@ -172,6 +178,34 @@ public class UIPasteboardPlugin: NSObject, FlutterPlugin {
       result(nil)
     }
   }
+
+  private func getItems(_ call: FlutterMethodCall, _ result: @escaping FlutterResult) {
+    let items = UIPasteboard.general.items
+    var itemList: [[String: Any]] = []
+    for item in items {
+      var itemDict: [String: Any] = [:]
+      for (key, value) in item {
+        if let data = value as? Data {
+          itemDict[key] = FlutterStandardTypedData(bytes: data)
+        } else if let string = value as? String {
+          itemDict[key] = string
+        } else if let url = value as? URL {
+          itemDict[key] = url.absoluteString
+        }
+      }
+      itemList.append(itemDict)
+    }
+    result(itemList)
+  }
+
+  private func getTypes(_ call: FlutterMethodCall, _ result: @escaping FlutterResult) {
+    let types = UIPasteboard.general.types
+    var typeList: [String] = []
+    for type in types {
+      typeList.append(type.rawValue)
+    }
+    result(typeList)
+  }
 }
 
 extension UIColor {
@@ -183,7 +217,8 @@ extension UIColor {
 
     getRed(&r, green: &g, blue: &b, alpha: &a)
 
-    let rgb: Int = (Int)(r * 255) << 24 | (Int)(g * 255) << 16 | (Int)(b * 255) << 8 | (Int)(a * 255) << 0
+    let rgb: Int =
+      (Int)(r * 255) << 24 | (Int)(g * 255) << 16 | (Int)(b * 255) << 8 | (Int)(a * 255) << 0
 
     return String(format: "%08x", rgb).uppercased()
   }
