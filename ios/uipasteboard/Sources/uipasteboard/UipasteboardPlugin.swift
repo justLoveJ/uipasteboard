@@ -12,6 +12,12 @@ public class UiPasteboardPlugin: NSObject, FlutterPlugin {
 
   public func handle(_ call: FlutterMethodCall, result: @escaping FlutterResult) {
     switch call.method {
+    case "getChangeCount":
+      getChangeCount(call, result)
+      return
+    case "getNumberOfItems":
+      getNumberOfItems(call, result)
+      return
     case "getURLs":
       getURLs(call, result)
       return
@@ -21,16 +27,10 @@ public class UiPasteboardPlugin: NSObject, FlutterPlugin {
     case "hasURLs":
       hasURLs(call, result)
       return
-    case "getChangeCount":
-      getChangeCount(call, result)
-      return
-    case "getNumberOfItems":
-      getNumberOfItems(call, result)
-      return
     case "getImage":
       getImage(call, result)
       return
-    case "getImages": 
+    case "getImages":
       getImages(call, result)
       return
     case "hasImages":
@@ -47,6 +47,12 @@ public class UiPasteboardPlugin: NSObject, FlutterPlugin {
       return
     case "hasColors":
       hasColors(call, result)
+      return
+    case "getColor":
+      getColor(call, result)
+      return
+    case "getColors":
+      getColors(call, result)
       return
     default:
       result(FlutterMethodNotImplemented)
@@ -144,6 +150,26 @@ public class UiPasteboardPlugin: NSObject, FlutterPlugin {
       result(true)
     } else {
       result(false)
+    }
+  }
+
+  private func getColors(_ call: FlutterMethodCall, _ result: @escaping FlutterResult) {
+    if let colors = UIPasteboard.general.colors {
+      var colorList: [String] = []
+      for color in colors {
+        colorList.append(color.toHexString())
+      }
+      result(colorList)
+    } else {
+      result(nil)
+    }
+  }
+
+  private func getColor(_ call: FlutterMethodCall, _ result: @escaping FlutterResult) {
+    if let color = UIPasteboard.general.color {
+      result(color.toHexString())
+    } else {
+      result(nil)
     }
   }
 }
