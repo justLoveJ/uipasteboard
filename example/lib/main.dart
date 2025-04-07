@@ -26,7 +26,7 @@ class _MyAppState extends State<MyApp> {
         floatingActionButton: FloatingActionButton(
           onPressed: () {
             final pasteboard = UIPasteboard();
-            final hasUrl = pasteboard.hasURL();
+            final hasUrl = pasteboard.hasURLs();
             ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(hasUrl.toString())));
           },
         ),

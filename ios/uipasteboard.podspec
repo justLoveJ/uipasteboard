@@ -9,9 +9,9 @@ Pod::Spec.new do |s|
   s.description      = <<-DESC
 A Flutter plugin to interact with UIPasteboard on iOS.
                        DESC
-  s.homepage         = 'http://example.com'
+  s.homepage         = 'http://github.com/liplum/uipasteboard'
   s.license          = { :file => '../LICENSE' }
-  s.author           = { 'Your Company' => 'email@example.com' }
+  s.author           = { 'Liplum' => 'Li_plum@outlook.com' }
   s.source           = { :path => '.' }
   s.source_files = 'uipasteboard/Sources/uipasteboard/**/*'
   s.dependency 'Flutter'
