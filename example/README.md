@@ -1,4 +1,4 @@
-# uipasteboard_example
+# UIPasteboard Example
 
 Demonstrates how to use the uipasteboard plugin.
 

@@ -22,12 +22,20 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        appBar: AppBar(title: const Text('Plugin example app')),
+        appBar: AppBar(title: const Text('UIPasteboard')),
         floatingActionButton: FloatingActionButton(
-          onPressed: () {
+          child: Icon(Icons.paste_sharp),
+          onPressed: () async {
             final pasteboard = UIPasteboard();
-            final hasUrl = pasteboard.hasURLs();
-            ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(hasUrl.toString())));
+            final hasUrl = await pasteboard.hasURLs();
+            if (hasUrl) {
+              final url = await pasteboard.getURL();
+              if (!context.mounted) return;
+              ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("$url")));
+            } else {
+              if (!context.mounted) return;
+              ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("No URL detected in the pasteboard.")));
+            }
           },
         ),
       ),
