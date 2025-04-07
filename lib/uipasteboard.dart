@@ -5,33 +5,53 @@ final _channel = const MethodChannel('uipasteboard');
 abstract class UIPasteboard {
   factory UIPasteboard() => const _UIPasteboardImpl();
 
+  /// https://developer.apple.com/documentation/uikit/uipasteboard/changecount
   Future<int> getChangeCount();
 
+  /// https://developer.apple.com/documentation/uikit/uipasteboard/numberofitems
   Future<int> getNumberOfItems();
 
+  /// https://developer.apple.com/documentation/uikit/uipasteboard/hasColors
   Future<bool> hasColors();
 
+  /// https://developer.apple.com/documentation/uikit/uipasteboard/color
   Future<Color?> getColor();
 
+  /// https://developer.apple.com/documentation/uikit/uipasteboard/colors
   Future<List<Color>?> getColors();
 
+  /// https://developer.apple.com/documentation/uikit/uipasteboard/hasImages
   Future<bool> hasImages();
 
+  /// https://developer.apple.com/documentation/uikit/uipasteboard/image
   Future<ByteData?> getImage();
 
+  /// https://developer.apple.com/documentation/uikit/uipasteboard/images
   Future<List<ByteData>?> getImages();
 
+  /// https://developer.apple.com/documentation/uikit/uipasteboard/hasurl
   Future<bool> hasURLs();
 
+  /// https://developer.apple.com/documentation/uikit/uipasteboard/url
   Future<String?> getURL();
 
+  /// https://developer.apple.com/documentation/uikit/uipasteboard/urls
   Future<List<String>?> getURLs();
 
+  /// https://developer.apple.com/documentation/uikit/uipasteboard/strings
   Future<bool> hasStrings();
 
+  /// https://developer.apple.com/documentation/uikit/uipasteboard/string
   Future<String?> getString();
 
+  /// https://developer.apple.com/documentation/uikit/uipasteboard/strings
   Future<List<String>?> getStrings();
+
+  /// https://developer.apple.com/documentation/uikit/uipasteboard/types
+  Future<List<String>?> getTypes();
+
+  /// https://developer.apple.com/documentation/uikit/uipasteboard/items
+  Future<List<Map<String, dynamic>>?> getItems();
 }
 
 class _UIPasteboardImpl implements UIPasteboard {
@@ -107,6 +127,16 @@ class _UIPasteboardImpl implements UIPasteboard {
   @override
   Future<List<String>?> getURLs() async {
     return await _channel.invokeMethod<List<String>>("getURLs");
+  }
+
+  @override
+  Future<List<Map<String, dynamic>>?> getItems() async {
+    return await _channel.invokeMethod<List<Map<String, dynamic>>>("getItems");
+  }
+
+  @override
+  Future<List<String>?> getTypes() async {
+    return await _channel.invokeMethod<List<String>>("getTypes");
   }
 }
 
