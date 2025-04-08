@@ -6,6 +6,7 @@ with [UIPasteboard](https://developer.apple.com/documentation/uikit/uipasteboard
 ## Get Started
 
 Add the following in the dependencies section of your `pubspec.yaml`:
+
 ```yaml
 dependencies:
   uipasteboard: <latest version>
