@@ -1,5 +1,7 @@
 # UIPasteboard
 
+[![pub package](https://img.shields.io/pub/v/uipasteboard.svg?style=for-the-badge&logo=dart)](https://pub.dartlang.org/packages/uipasteboard)
+
 A Flutter plugin to interact
 with [UIPasteboard](https://developer.apple.com/documentation/uikit/uipasteboard) on iOS.
 
