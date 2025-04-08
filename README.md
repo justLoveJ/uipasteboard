@@ -16,6 +16,8 @@ dependencies:
 
 ```dart
 Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  
   // the plugin only works on iOS
   if (Platform.isIOS) {
     final pasteboard = UIPasteboard();
