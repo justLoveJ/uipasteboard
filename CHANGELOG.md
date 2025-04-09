@@ -4,4 +4,8 @@
 
 ## 0.1.1
 
+* Removed unused `plugin_platform_interface` dependency. 
+
+## 0.1.0
+
 * Added the initial implementation,
