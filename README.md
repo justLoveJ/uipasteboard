@@ -8,7 +8,8 @@ with [UIPasteboard](https://developer.apple.com/documentation/uikit/uipasteboard
 > [!IMPORTANT]
 > Starting in iOS 14, the system notifies the user when an app gets general pasteboard content that
 > originates in a different app without user intent. The system determines user intent based on user
-> interactions, such as tapping a system-provided control or pressing Command-V. Use detection methods
+> interactions, such as tapping a system-provided control or pressing Command-V. Use detection
+> methods
 > this package provided like `UIPasteboard().hasURLs()` to determine whether pasteboard items match
 > various patterns, such as web search terms, URLs, or numbers, without notifying the user.
 
@@ -41,3 +42,12 @@ Future<void> main() async {
   }
 }
 ```
+
+## Detection and Retrieval
+
+|  Type  |   Detection    |           Retrieval            |
+|:------:|:--------------:|:------------------------------:|
+| String | `hasStrings()` | `getString()`,` getStrings()`  |
+|  URL   |  `hasURLs()`   |    `getURL()`,` getURLs()`     |
+| Image  | `hasImages()`  |  `getImage()`,` getImages()`   |
+| Color  | `hasColors()`  |  `getColor()`,` getColors()`   |
