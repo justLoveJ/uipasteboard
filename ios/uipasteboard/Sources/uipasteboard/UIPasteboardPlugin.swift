@@ -200,11 +200,7 @@ public class UIPasteboardPlugin: NSObject, FlutterPlugin {
 
   private func getTypes(_ call: FlutterMethodCall, _ result: @escaping FlutterResult) {
     let types = UIPasteboard.general.types
-    var typeList: [String] = []
-    for type in types {
-      typeList.append(type.rawValue)
-    }
-    result(typeList)
+    result(types)
   }
 }
 
