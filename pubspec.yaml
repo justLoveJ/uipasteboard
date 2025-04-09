@@ -1,6 +1,6 @@
 name: uipasteboard
 description: "A Flutter plugin to interact with UIPasteboard on iOS."
-version: 0.1.1
+version: 0.1.2
 homepage: https://github.com/liplum/uipasteboard
 
 environment:
