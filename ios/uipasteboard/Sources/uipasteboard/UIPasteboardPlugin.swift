@@ -92,7 +92,7 @@ public class UIPasteboardPlugin: NSObject, FlutterPlugin {
   private func hasURLs(_ call: FlutterMethodCall, _ result: @escaping FlutterResult) {
     if #available(iOS 14.0, *) {
       // iOS 14+ 使用新的检测 API
-        UIPasteboard.general.detectPatterns(for: [.probableWebURL, .number, .probableWebSearch]) { callbackresult in
+        UIPasteboard.general.detectPatterns(for: [.probableWebURL, .probableWebSearch]) { callbackresult in
             switch callbackresult {
             case let .success(pattern):
                 if pattern.contains(.probableWebURL) {
